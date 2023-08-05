@@ -1,0 +1,42 @@
+﻿@model IEnumerable<Gf>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<div class="container p-3">
+    <div class="row pt-4">
+        <h2 class="text-primary"> GFS</h2>
+    </div>
+    <div class="col-6">
+        <a asp-controller="Gfs" asp-action="Create">Create</a>
+    </div>
+
+
+<table class="table table-bordered table-striped" style="width:100%">
+    <Thead>
+        <tr>
+            <td style="text-align:center">Product ID</td>
+            <td style="text-align:center">Product Name</td>
+            <td style="text-align:center">Product Price</td>
+            <td style="text-align:center">Product Weight</td>
+        <tr />
+    </Thead>
+    <tbody>
+
+        @foreach (var value in Model)
+        {
+            <tr>
+                <td width="20%" class="_gfsTD">@value.Id</td>
+                <td width="20%" class="_gfsTD">@value.ProductName</td>
+                <td width="20%" class="_gfsTD">@value.Price</td>
+                <td width="20%" class="_gfsTD">@value.Weight</td>
+
+            </tr>
+        }
+
+    </tbody>
+
+</table>
+</div>

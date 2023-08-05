@@ -1,6 +1,18 @@
 html {
   font-size: 14px;
 }
+._gfsTD {
+    text-align:center;
+}
+table{
+    border:1px solid #ff0000;
+}
+table>thead {
+    border: 1px solid #ff0000;
+}
+table>tbody,table>tbody>td {
+    border: 1px solid #ff0000;
+}
 
 @media (min-width: 768px) {
   html {
