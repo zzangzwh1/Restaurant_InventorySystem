@@ -19,5 +19,13 @@ namespace Restaurant_InventorySystem.Controllers
             IEnumerable<Gf> obj = _db.Gfs; 
             return View(obj);
         }
+        /// <summary>
+        /// Get action method
+        /// </summary>
+        /// <returns></returns>
+        public IActionResult Create()
+        {
+            return View();
+        }
     }
 }
