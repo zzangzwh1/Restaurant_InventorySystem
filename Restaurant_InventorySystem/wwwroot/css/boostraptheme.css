@@ -4377,19 +4377,27 @@ textarea.form-control-lg {
     flex: 1 1 auto;
     text-align: center;
 }
-
-.nav-justified > .nav-link,
-.nav-justified .nav-item {
-    flex-basis: 0;
-    flex-grow: 1;
-    text-align: center;
+.nav-link.text-dark  {
+    color: black !important;
 }
+    .nav-link.text-dark:hover {
+        color: red !important;
+    }
+
+    .nav-justified > .nav-link,
+    .nav-justified .nav-item {
+        flex-basis: 0;
+        flex-grow: 1;
+        text-align: center;
+    }
 
     .nav-fill .nav-item .nav-link,
     .nav-justified .nav-item .nav-link {
         width: 100%;
     }
-
+    .nav-item>a:hover{
+        color:red;
+    }
 .tab-content > .tab-pane {
     display: none;
 }

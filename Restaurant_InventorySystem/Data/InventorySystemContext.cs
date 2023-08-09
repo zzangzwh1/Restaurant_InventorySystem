@@ -32,13 +32,11 @@ public partial class InventorySystemContext : DbContext
     {
         modelBuilder.Entity<Etc>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__ETC__3214EC27D7A4DCB8");
+            entity.HasKey(e => e.Id).HasName("PK__ETC__3214EC2708D5A5A1");
 
             entity.ToTable("ETC");
 
-            entity.Property(e => e.Id)
-                .ValueGeneratedNever()
-                .HasColumnName("ID");
+            entity.Property(e => e.Id).HasColumnName("ID");
             entity.Property(e => e.JfcId).HasColumnName("jfcID");
             entity.Property(e => e.ProductName)
                 .HasMaxLength(50)
@@ -46,18 +44,16 @@ public partial class InventorySystemContext : DbContext
 
             entity.HasOne(d => d.Jfc).WithMany(p => p.Etcs)
                 .HasForeignKey(d => d.JfcId)
-                .HasConstraintName("FK__ETC__jfcID__2B3F6F97");
+                .HasConstraintName("FK__ETC__jfcID__35BCFE0A");
         });
 
         modelBuilder.Entity<Gf>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__GFS__3214EC27E57B9349");
+            entity.HasKey(e => e.Id).HasName("PK__GFS__3214EC275A25EAC5");
 
             entity.ToTable("GFS");
 
-            entity.Property(e => e.Id)
-                .ValueGeneratedNever()
-                .HasColumnName("ID");
+            entity.Property(e => e.Id).HasColumnName("ID");
             entity.Property(e => e.ProductName)
                 .HasMaxLength(50)
                 .IsUnicode(false);
@@ -65,13 +61,11 @@ public partial class InventorySystemContext : DbContext
 
         modelBuilder.Entity<Jfc>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__JFC__3214EC278A4A9C40");
+            entity.HasKey(e => e.Id).HasName("PK__JFC__3214EC279B598D77");
 
             entity.ToTable("JFC");
 
-            entity.Property(e => e.Id)
-                .ValueGeneratedNever()
-                .HasColumnName("ID");
+            entity.Property(e => e.Id).HasColumnName("ID");
             entity.Property(e => e.ProductName)
                 .HasMaxLength(50)
                 .IsUnicode(false);
@@ -79,18 +73,16 @@ public partial class InventorySystemContext : DbContext
 
             entity.HasOne(d => d.Sysco).WithMany(p => p.Jfcs)
                 .HasForeignKey(d => d.SyscoId)
-                .HasConstraintName("FK__JFC__syscoID__286302EC");
+                .HasConstraintName("FK__JFC__syscoID__32E0915F");
         });
 
         modelBuilder.Entity<Sysco>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Sysco__3214EC276498C821");
+            entity.HasKey(e => e.Id).HasName("PK__Sysco__3214EC272C4BE923");
 
             entity.ToTable("Sysco");
 
-            entity.Property(e => e.Id)
-                .ValueGeneratedNever()
-                .HasColumnName("ID");
+            entity.Property(e => e.Id).HasColumnName("ID");
             entity.Property(e => e.GfsId).HasColumnName("gfsID");
             entity.Property(e => e.ProductName)
                 .HasMaxLength(50)
@@ -98,7 +90,7 @@ public partial class InventorySystemContext : DbContext
 
             entity.HasOne(d => d.Gfs).WithMany(p => p.Syscos)
                 .HasForeignKey(d => d.GfsId)
-                .HasConstraintName("FK__Sysco__gfsID__25869641");
+                .HasConstraintName("FK__Sysco__gfsID__300424B4");
         });
 
         OnModelCreatingPartial(modelBuilder);

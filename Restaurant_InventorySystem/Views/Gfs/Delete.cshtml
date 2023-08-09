@@ -1,26 +1,28 @@
 ﻿@model Gf
-<form method="post" style="border:1px solid white;">
+
+<form method="post" asp-action="DeletePost" style="border:1px solid white;">
+    <input asp-for="Id" hidden/>
     <div class="border p-3 mt-4">
         <div class="row pb-2">
-            <h2 class="text-primary"> Edit Items</h2>
+            <h2 class="text-primary"> Delete Items</h2>
             <hr/>
         </div>
         <div class="mb-3">
             <label asp-for=ProductName></label>
-            <input asp-for="ProductName" class="form-control"/>
-            <span asp-validation-for="ProductName" class="text-danger"></span>
+            <input asp-for="ProductName" disabled class="form-control"/>
+          
         </div>
         <div class="mb-3">
             <label asp-for=Price></label>
-            <input asp-for="Price" class="form-control" />
-            <span asp-validation-for="Price" class="text-danger"></span>
+            <input asp-for="Price" disabled class="form-control" />
+           
         </div>
         <div class="mb-3">
             <label asp-for=Weight></label>
-            <input asp-for="Weight" class="form-control" />
-            <span asp-validation-for="Weight" class="text-danger"></span>
+            <input asp-for="Weight" disabled class="form-control" />
+         
         </div>
-        <button type="submit" class="btn btn-primary" style="width:150px;">Update</button>
+        <button type="submit" class="btn btn-danger" style="width:150px;">Delete</button>
         <a asp-controller="Gfs" asp-action="Index" class="btn btn-secondary" style="width:150px;">
           Back To Item
             </a>
