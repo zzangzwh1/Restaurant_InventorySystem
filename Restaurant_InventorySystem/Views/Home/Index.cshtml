@@ -1,8 +1,135 @@
-﻿@{
+﻿@model ProductCategoriesModel
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container p-3">
+    <div class="row pt-4">
+
+        <div class="col-6">
+            <h2 class="text-primary">Items In Inventory</h2>
+        </div>
+       
+    </div>
+    <br />
+
+
+
+    <table class="table table-bordered table-striped" style="width:100%">
+        <Thead>
+            <tr>
+           
+                
+                <th style="text-align:center">GFS Product Name</th>
+                <th style="text-align:center">GFS Product Price</th>
+                <th style="text-align:center">GFS Product Weight</th>
+            <tr />
+        </Thead>
+        <tbody>
+
+            @foreach (var value in Model.gfs)
+            {
+                <tr>
+                  
+                    <td width="20%" class="_gfsTD">@value.ProductName</td>
+                    <td width="20%" class="_gfsTD">$ @value.Price</td>
+                    <td width="20%" class="_gfsTD">@value.Weight KG</td>
+                    
+
+
+                </tr>
+            }
+
+        </tbody>
+
+    </table>
+    
+    <table class="table table-bordered table-striped" style="width:100%">
+        <Thead>
+            <tr>
+           
+                
+                <th style="text-align:center">Sysco Product Name</th>
+                <th style="text-align:center">Sysco Product Price</th>
+                <th style="text-align:center">Sysco Product Weight</th>
+            <tr />
+        </Thead>
+        <tbody>
+
+            @foreach (var value in Model.sysco)
+            {
+                <tr>
+                  
+                    <td width="20%" class="_gfsTD">@value.ProductName</td>
+                    <td width="20%" class="_gfsTD">$ @value.Price</td>
+                    <td width="20%" class="_gfsTD">@value.Weight KG</td>
+                    
+
+
+                </tr>
+            }
+
+        </tbody>
+
+    </table>
+    
+    <table class="table table-bordered table-striped" style="width:100%">
+        <Thead>
+            <tr>
+           
+                
+                <th style="text-align:center">JFC Product Name</th>
+                <th style="text-align:center">JFC Product Price</th>
+                <th style="text-align:center">JFC Product Weight</th>
+            <tr />
+        </Thead>
+        <tbody>
+
+            @foreach (var value in Model.jfc)
+            {
+                <tr>
+                  
+                    <td width="20%" class="_gfsTD">@value.ProductName</td>
+                    <td width="20%" class="_gfsTD">$ @value.Price</td>
+                    <td width="20%" class="_gfsTD">@value.Weight KG</td>
+                    
+
+
+                </tr>
+            }
+
+        </tbody>
+
+        
+    <table class="table table-bordered table-striped" style="width:100%">
+        <Thead>
+            <tr>
+
+
+                    <th style="text-align:center">ETC Product Name</th>
+                    <th style="text-align:center">ETC Product Price</th>
+                    <th style="text-align:center">ETC Product Weight</th>
+            <tr />
+        </Thead>
+        <tbody>
+
+            @foreach (var value in Model.etc)
+            {
+                <tr>
+                  
+                    <td width="20%" class="_gfsTD">@value.ProductName</td>
+                    <td width="20%" class="_gfsTD">$ @value.Price</td>
+                    <td width="20%" class="_gfsTD">@value.Weight KG</td>
+                    
+
+
+                </tr>
+            }
+
+        </tbody>
+
+    </table>
+
+    </table>
 </div>
