@@ -16,7 +16,10 @@ namespace Restaurant_InventorySystem.Controllers
             _logger = logger;
             this._db = db;
         }
-
+        /// <summary>
+        /// Display Every item in inventory
+        /// </summary>
+        /// <returns></returns>
         public IActionResult Index()
         {
             List<Gf> _Gfs = _db.Gfs.ToList();
