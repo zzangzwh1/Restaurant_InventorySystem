@@ -37,10 +37,32 @@ namespace Restaurant_InventorySystem.Controllers
             
             };
 
+        
+           
 
             return View(viewItems);
         }
+/*        [HttpPost]
+        public List<object> GetData()
+        {
+        
+            List<object> dataResult = new List<object>();
 
+            List<string> gfsProdcuts = _db.Gfs.Select(i => i.ProductName).ToList();
+            
+            List<string> etcProdcuts = _db.Etcs.Select(i => i.ProductName).ToList();
+            List<string> jkcProdcuts = _db.Jfcs.Select(i => i.ProductName).ToList();
+            List<string> syscoProduct = _db.Syscos.Select(i => i.ProductName).ToList();
+
+            dataResult.Add(gfsProdcuts);
+            dataResult.Add(etcProdcuts);
+            dataResult.Add(jkcProdcuts);
+            dataResult.Add(syscoProduct);
+
+            List<double> gfsPrice = _db.Gfs.Select(i => (double)i.Price).ToList();
+
+        }
+*/
         public IActionResult Privacy()
         {
             return View();

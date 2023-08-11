@@ -1,8 +1,35 @@
 ﻿@model ProductCategoriesModel
 
+
 @{
     ViewData["Title"] = "Home Page";
+    double _totalGFS = 0;
+    double _totalSysco = 0;
+    double _totalJFC = 0;
+    double _totalETC = 0;
+    double _totalExpense = 0;
+    foreach (var val in Model.gfs)
+    {
+        _totalExpense += (double)val.Price;
+        _totalGFS += (double)val.Price;
+    }
+    foreach (var val in Model.sysco)
+    {
+        _totalExpense += (double)val.Price;
+        _totalSysco += (double)val.Price;
+    }
+    foreach (var val in Model.etc)
+    {
+        _totalExpense += (double)val.Price;
+        _totalETC += (double)val.Price;
+    }
+    foreach (var val in Model.jfc)
+    {
+        _totalExpense += (double)val.Price;
+        _totalJFC += (double)val.Price;
+    }
 }
+
 
 <div class="container p-3">
     <div class="row pt-4">
@@ -138,7 +165,7 @@
                 double totalEtcPrice = 0;
                 totalEtcPrice += (double)value.Price;
                 double totalLb = (double)value.Weight * 2.20462;
-               
+
                 <tr>
 
                     <td width="20%" class="_gfsTD">@value.ProductName</td>
@@ -146,7 +173,7 @@
                     <td width="20%" class="_gfsTD">@totalLb.ToString("0.00") LB</td>
                     <td width="20%" class="_gfsTD">$ @value.Price</td>
                     <td width="20%" class="_gfsTD">$ @totalEtcPrice</td>
-                  
+
 
 
                 </tr>
@@ -156,30 +183,57 @@
 
     </table>
 
-    <h4 style="text-align:end;">
-        Total Expense : 
-        @{
-            double totalExpense = 0;
-            foreach(var val in Model.gfs)
-            {
-                totalExpense += (double)val.Price;
-            }
-            foreach (var val in Model.sysco)
-            {
-                totalExpense += (double)val.Price;
-            }
-            foreach (var val in Model.etc)
-            {
-                totalExpense += (double)val.Price;
-            }
-            foreach (var val in Model.jfc)
-            {
-                totalExpense += (double)val.Price;
-            }
-        }
-       $ @totalExpense
 
+
+    <div>
+        <canvas id="myChart" ></canvas>
+        <script>
+            const ctx = document.getElementById('myChart');
+
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['GFS', 'JFC', 'Sysco', 'ETC'],
+                    datasets: [{
+                        label: 'Most of Expense from Supplier',
+                        data: [@_totalGFS, @_totalJFC, @_totalSysco, @_totalETC],
+                        backgroundColor: [
+                            'rgba(255, 0, 0, 1)',
+                            'rgba(0, 255, 0, 1)',
+                            'rgba(0, 0, 255, 1)',
+                            'rgba(255, 255, 0, 1)'
+                            
+                        ],
+
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                color: 'white' // Change the color of the tick numbers on the y-axis
+                            }
+                        }
+                                    x: {
+                            ticks: {
+                                color: 'white' // Change the color of the tick labels on the x-axis
+                            }
+                        }
+
+                    }
+                }
+            });
+        </script>
+    </div>
+
+    <h4 style="text-align:end;">
+        Total Expense : @_totalExpense
     </h4>
 
 
+
+
 </div>
+
