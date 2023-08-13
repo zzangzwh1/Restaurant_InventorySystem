@@ -8,26 +8,38 @@
     double _totalJFC = 0;
     double _totalETC = 0;
     double _totalExpense = 0;
+    Dictionary<double, string> _items = new Dictionary<double, string>();
     foreach (var val in Model.gfs)
     {
         _totalExpense += (double)val.Price;
         _totalGFS += (double)val.Price;
+
     }
+        
     foreach (var val in Model.sysco)
     {
         _totalExpense += (double)val.Price;
         _totalSysco += (double)val.Price;
     }
+     
     foreach (var val in Model.etc)
     {
         _totalExpense += (double)val.Price;
         _totalETC += (double)val.Price;
+       
     }
     foreach (var val in Model.jfc)
     {
         _totalExpense += (double)val.Price;
         _totalJFC += (double)val.Price;
+      
     }
+    _items.Add(_totalGFS, "GFS");
+    _items.Add(_totalSysco, "Sysco");
+    _items.Add(_totalETC, "ETC");
+    _items.Add(_totalJFC, "JFC");
+    List<KeyValuePair<double, string>> sortedList = _items.ToList();
+    sortedList.Sort((pair1, pair2) => pair1.Key.CompareTo(pair2.Key));
 }
 
 
@@ -186,37 +198,61 @@
 
 
     <div>
-        <canvas id="myChart" ></canvas>
+        <canvas id="myChart"></canvas>
         <script>
             const ctx = document.getElementById('myChart');
 
             new Chart(ctx, {
                 type: 'bar',
                 data: {
-                    labels: ['GFS', 'JFC', 'Sysco', 'ETC'],
+
+
+                    labels: ['@sortedList[3].Value',
+                        '@sortedList[2].Value',
+                        '@sortedList[1].Value',
+                        '@sortedList[0].Value'],
+            
+                
                     datasets: [{
-                        label: 'Most of Expense from Supplier',
-                        data: [@_totalGFS, @_totalJFC, @_totalSysco, @_totalETC],
+                        label: 'Expense from Supplier',                        
+
                         backgroundColor: [
+                            
                             'rgba(255, 0, 0, 1)',
                             'rgba(0, 255, 0, 1)',
                             'rgba(0, 0, 255, 1)',
                             'rgba(255, 255, 0, 1)'
-                            
+
+                           
+                           
+
                         ],
+                        data: ['@sortedList[3].Key',
+                            '@sortedList[2].Key',
+                            '@sortedList[1].Key',
+                            '@sortedList[0].Key'],
+                     
 
                         borderWidth: 1
                     }]
                 },
                 options: {
+                    plugins: {
+                        legend: {
+                            labels: {
+                                color: 'white', // Change label text color
+                            },
+                            boxBackgroundColor: 'white', // Change label background color
+                        }
+                    },
                     scales: {
                         y: {
                             beginAtZero: true,
                             ticks: {
                                 color: 'white' // Change the color of the tick numbers on the y-axis
                             }
-                        }
-                                    x: {
+                        },
+                        x: {
                             ticks: {
                                 color: 'white' // Change the color of the tick labels on the x-axis
                             }
@@ -226,14 +262,17 @@
                 }
             });
         </script>
+
     </div>
 
+
     <h4 style="text-align:end;">
-        Total Expense : @_totalExpense
+        Total Expense : $@_totalExpense
     </h4>
 
 
 
 
 </div>
+
 
