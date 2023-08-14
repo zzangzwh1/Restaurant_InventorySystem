@@ -15,24 +15,24 @@
         _totalGFS += (double)val.Price;
 
     }
-        
+
     foreach (var val in Model.sysco)
     {
         _totalExpense += (double)val.Price;
         _totalSysco += (double)val.Price;
     }
-     
+
     foreach (var val in Model.etc)
     {
         _totalExpense += (double)val.Price;
         _totalETC += (double)val.Price;
-       
+
     }
     foreach (var val in Model.jfc)
     {
         _totalExpense += (double)val.Price;
         _totalJFC += (double)val.Price;
-      
+
     }
     _items.Add(_totalGFS, "GFS");
     _items.Add(_totalSysco, "Sysco");
@@ -58,13 +58,10 @@
     <table class="table table-bordered table-striped" style="width:100%">
         <Thead>
             <tr>
-
-
                 <th style="text-align:center">GFS Product Name</th>
                 <th style="text-align:center">GFS Product Weight(KG)</th>
                 <th style="text-align:center">GFS Product Weight(LB)</th>
                 <th style="text-align:center">GFS Product Price</th>
-                <th style="text-align:center">GFS Total Price</th>
             <tr />
         </Thead>
         <tbody>
@@ -80,8 +77,6 @@
                     <td width="20%" class="_gfsTD">@value.Weight KG</td>
                     <td width="20%" class="_gfsTD">@totalLb.ToString("0.00") LB</td>
                     <td width="20%" class="_gfsTD">$ @value.Price</td>
-                    <td width="20%" class="_gfsTD">$ @totalGfsPrice</td>
-
 
                 </tr>
             }
@@ -89,6 +84,10 @@
         </tbody>
 
     </table>
+    <h5 style="text-align:end;">
+        Total GFS Expense : $@_totalGFS
+    </h5>
+
 
     <table class="table table-bordered table-striped" style="width:100%">
         <Thead>
@@ -99,7 +98,7 @@
                 <th style="text-align:center">Sysco Product Weight(KG)</th>
                 <th style="text-align:center">Sysco Product Weight(LB)</th>
                 <th style="text-align:center">Sysco Product Price</th>
-                <th style="text-align:center">Sysco Total Price</th>
+
             <tr />
         </Thead>
         <tbody>
@@ -115,14 +114,15 @@
                     <td width="20%" class="_gfsTD">@value.Weight KG</td>
                     <td width="20%" class="_gfsTD">@totalLb.ToString("0.00") LB</td>
                     <td width="20%" class="_gfsTD">$ @value.Price</td>
-                    <td width="20%" class="_gfsTD">$ @totalSyscoPrice</td>
-
 
                 </tr>
             }
         </tbody>
 
     </table>
+    <h5 style="text-align:end;">
+        Total Sysco Expense : $@_totalSysco
+    </h5>
 
     <table class="table table-bordered table-striped" style="width:100%">
         <Thead>
@@ -133,7 +133,7 @@
                 <th style="text-align:center">JFC Product Weight(KG)</th>
                 <th style="text-align:center">JFC Product Weight(LB)</th>
                 <th style="text-align:center">JFC Product Price</th>
-                <th style="text-align:center">JFC Total Price</th>
+
             <tr />
         </Thead>
         <tbody>
@@ -149,14 +149,15 @@
                     <td width="20%" class="_gfsTD">@value.Weight KG</td>
                     <td width="20%" class="_gfsTD">@totalLb.ToString("0.00") LB</td>
                     <td width="20%" class="_gfsTD">$ @value.Price</td>
-                    <td width="20%" class="_gfsTD">$ @totalJfcPrice</td>
-
 
                 </tr>
             }
 
         </tbody>
     </table>
+    <h5 style="text-align:end;">
+        Total JFC Expense : $@_totalJFC
+    </h5>
 
     <table class="table table-bordered table-striped" style="width:100%">
         <Thead>
@@ -167,7 +168,7 @@
                 <th style="text-align:center">ETC Product Weight(KG)</th>
                 <th style="text-align:center">ETC Product Weight(LB)</th>
                 <th style="text-align:center">ETC Product Price</th>
-                <th style="text-align:center">ETC Total Price</th>
+
             <tr />
         </Thead>
         <tbody>
@@ -184,9 +185,6 @@
                     <td width="20%" class="_gfsTD">@value.Weight KG</td>
                     <td width="20%" class="_gfsTD">@totalLb.ToString("0.00") LB</td>
                     <td width="20%" class="_gfsTD">$ @value.Price</td>
-                    <td width="20%" class="_gfsTD">$ @totalEtcPrice</td>
-
-
 
                 </tr>
             }
@@ -194,6 +192,10 @@
         </tbody>
 
     </table>
+    <h5 style="text-align:end;">
+        Total ETC Expense : $@_totalETC
+    </h5>
+
 
 
 
@@ -211,27 +213,25 @@
                         '@sortedList[2].Value',
                         '@sortedList[1].Value',
                         '@sortedList[0].Value'],
-            
-                
+
+
                     datasets: [{
-                        label: 'Expense from Supplier',                        
+                        label: 'Expense from Supplier',
 
                         backgroundColor: [
-                            
+
                             'rgba(255, 0, 0, 1)',
                             'rgba(0, 255, 0, 1)',
                             'rgba(0, 0, 255, 1)',
                             'rgba(255, 255, 0, 1)'
 
-                           
-                           
 
                         ],
                         data: ['@sortedList[3].Key',
                             '@sortedList[2].Key',
                             '@sortedList[1].Key',
                             '@sortedList[0].Key'],
-                     
+
 
                         borderWidth: 1
                     }]
@@ -242,7 +242,7 @@
                             labels: {
                                 color: 'white', // Change label text color
                             },
-                            boxBackgroundColor: 'white', // Change label background color
+                            // boxBackgroundColor: 'white', // Change label background color
                         }
                     },
                     scales: {
@@ -271,6 +271,17 @@
     </h4>
 
 
+    @{
+        Html.BeginForm("CreateExcel", "Home", FormMethod.Get);
+        {
+            <div>
+                    <input type="submit" value="Create Excel" style="width:150px; height:30px;"/>
+            </div>
+
+        }
+        Html.EndForm();
+    }
+    <br/>
 
 
 </div>
