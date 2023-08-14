@@ -90,7 +90,8 @@ namespace Restaurant_InventorySystem.Controllers
                 worksheet.Range["B10"].CellStyle.Font.Bold = true;
                 worksheet.Range["C10"].Text = "Supplier";
                 worksheet.Range["C10"].CellStyle.Font.Bold = true;
-
+                
+                // GFS in Excel 
                 List<Gf> _Gfs = _db.Gfs.ToList();
                 PopulateWorksheet(worksheet, 11, _Gfs, "GFS",'A','B','C');
 
@@ -102,6 +103,7 @@ namespace Restaurant_InventorySystem.Controllers
                 worksheet.Range["G10"].Text = "Supplier";
                 worksheet.Range["G10"].CellStyle.Font.Bold = true;
 
+                //JFC in Excel
                 List<Jfc> _jfc = _db.Jfcs.ToList();
                 PopulateWorksheet(worksheet, 11, _jfc, "JFC", 'E', 'F', 'G');
 
@@ -112,6 +114,7 @@ namespace Restaurant_InventorySystem.Controllers
                 worksheet.Range["K10"].Text = "Supplier";
                 worksheet.Range["K10"].CellStyle.Font.Bold = true;
 
+                //Sysco in Excel
                 List<Sysco> _sysco = _db.Syscos.ToList();
                 PopulateWorksheet(worksheet, 11, _sysco, "Sysco", 'I', 'J', 'K');
 
@@ -122,6 +125,7 @@ namespace Restaurant_InventorySystem.Controllers
                 worksheet.Range["O10"].Text = "Supplier";
                 worksheet.Range["O10"].CellStyle.Font.Bold = true;
 
+                //ETC in excel
                 List<Etc> _ETC = _db.Etcs.ToList();
                 PopulateWorksheet(worksheet, 11, _ETC, "ETC", 'M', 'N', 'O');
 
@@ -162,27 +166,6 @@ namespace Restaurant_InventorySystem.Controllers
 
 
 
-        /*        [HttpPost]
-                public List<object> GetData()
-                {
-
-                    List<object> dataResult = new List<object>();
-
-                    List<string> gfsProdcuts = _db.Gfs.Select(i => i.ProductName).ToList();
-
-                    List<string> etcProdcuts = _db.Etcs.Select(i => i.ProductName).ToList();
-                    List<string> jkcProdcuts = _db.Jfcs.Select(i => i.ProductName).ToList();
-                    List<string> syscoProduct = _db.Syscos.Select(i => i.ProductName).ToList();
-
-                    dataResult.Add(gfsProdcuts);
-                    dataResult.Add(etcProdcuts);
-                    dataResult.Add(jkcProdcuts);
-                    dataResult.Add(syscoProduct);
-
-                    List<double> gfsPrice = _db.Gfs.Select(i => (double)i.Price).ToList();
-
-                }
-        */
         public IActionResult Privacy()
         {
             return View();
